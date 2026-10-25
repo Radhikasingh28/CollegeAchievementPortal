@@ -1,0 +1,7 @@
+target/
+error.txt
+application-local.properties
+.env
+*.log
+.idea/
+.vscode/

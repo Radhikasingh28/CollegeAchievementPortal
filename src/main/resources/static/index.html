@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>NIET Achievement Portal</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <section id="login-screen" class="login-screen">
+        <div class="login-card">
+            <div class="login-brand">
+                <div class="logo">N</div>
+                <div>
+                    <h1>NIET Portal</h1>
+                    <p>College Achievement Portal</p>
+                </div>
+            </div>
+
+            <div class="login-heading">
+                <span class="eyebrow">STUDENT EXCELLENCE</span>
+                <h2>Welcome back!</h2>
+                <p>Sign in to access your college portal.</p>
+            </div>
+
+            <form id="login-form">
+                <label for="login-username">College ID / Username</label>
+                <input id="login-username" name="username" placeholder="Enter your college ID" required>
+
+                <label for="login-password">Password</label>
+                <input id="login-password" name="password" type="password" placeholder="Enter your password" required>
+
+                <label for="login-role">Login as</label>
+                <select id="login-role" name="role" required>
+                    <option value="STUDENT">Student</option>
+                    <option value="FACULTY">Faculty</option>
+                    <option value="ADMIN">Administrator</option>
+                </select>
+
+                <button class="primary login-button" type="submit">Sign in →</button>
+                <p id="login-message" class="login-message" role="status"></p>
+            </form>
+
+            <p class="login-footer">NIET · Learn, Achieve, Excel</p>
+        </div>
+    </section>
+
+    <div class="layout hidden" id="dashboard">
+
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="logo">N</div>
+                <div><b>NIET Portal</b><small>Student Excellence</small></div>
+            </div>
+            <p class="nav-title">WORKSPACE</p>
+            <button class="nav active" data-view="overview">▦ &nbsp; Overview</button><button class="nav"
+                data-view="achievements">✦ &nbsp; Achievements</button><button class="nav" data-view="leaderboard">♜
+                &nbsp; Top 100 Leaderboard</button>
+            <div class="side-foot">
+                <div class="avatar">AD</div>
+                <div><b>Portal Demo</b><small>Administrator view</small></div>
+            </div>
+        </aside>
+        <main class="main">
+            <header class="topbar">
+                <div><small class="eyebrow">NIET • COLLEGE ACHIEVEMENT PORTAL</small>
+                    <h1 id="page-title">Overview</h1>
+                </div>
+                <div class="actions"><span class="dot"></span><span>Demo environment</span><button class="primary"
+                        id="open-add">＋ Add achievement</button></div>
+            </header>
+            <section id="overview-view" class="view">
+                <div class="hero">
+                    <div><small class="eyebrow light">STUDENT EXCELLENCE, MEASURED</small>
+                        <h2>Every achievement<br>deserves to count.</h2>
+                        <p>Track verified achievements and discover the students shaping our campus.</p>
+                    </div>
+                    <div class="hero-star">✦</div>
+                </div>
+                <div class="stats">
+                    <article><span>Total students</span><b id="stat-students">—</b><small>Registered in portal</small>
+                    </article>
+                    <article><span>Achievements</span><b id="stat-achievements">—</b><small>Submitted records</small>
+                    </article>
+                    <article><span>Verified</span><b id="stat-verified">—</b><small>Approved by faculty</small>
+                    </article>
+                    <article><span>Pending review</span><b id="stat-pending">—</b><small>Awaiting decision</small>
+                    </article>
+                </div>
+                <div class="section-head">
+                    <div>
+                        <h3>Leaderboard preview</h3>
+                        <p>Ranked by verified achievement points</p>
+                    </div><button class="link-btn" data-goto="leaderboard">View Top 100 →</button>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>RANK</th>
+                                <th>STUDENT</th>
+                                <th>DEPARTMENT</th>
+                                <th>VERIFIED</th>
+                                <th>SCORE</th>
+                            </tr>
+                        </thead>
+                        <tbody id="preview-body"></tbody>
+                    </table>
+                </div>
+                <div class="section-head">
+                    <div>
+                        <h3>Recent achievements</h3>
+                        <p>Latest student submissions</p>
+                    </div><button class="link-btn" data-goto="achievements">View all →</button>
+                </div>
+                <div id="recent-list" class="cards"></div>
+            </section>
+            <section id="achievements-view" class="view hidden">
+                <div class="toolbar"><input id="search" placeholder="Search title, student or category..."><select
+                        id="status-filter">
+                        <option value="ALL">All statuses</option>
+                        <option value="PENDING">Pending</option>
+                        <option value="VERIFIED">Verified</option>
+                        <option value="REJECTED">Rejected</option>
+                    </select></div>
+                <div id="achievement-list" class="cards"></div>
+            </section>
+            <section id="leaderboard-view" class="view hidden">
+                <div class="leader-hero">
+                    <div><small class="eyebrow light">CAMPUS RECOGNITION</small>
+                        <h2>Top 100 Students</h2>
+                        <p>Rankings reflect faculty-verified achievements only.</p>
+                    </div>
+                    <div class="cup">🏆</div>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>RANK</th>
+                                <th>STUDENT</th>
+                                <th>ROLL NUMBER</th>
+                                <th>DEPARTMENT</th>
+                                <th>VERIFIED</th>
+                                <th>SCORE</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboard-body"></tbody>
+                    </table>
+                </div>
+                <p class="note">Demo scoring values are illustrative. Sample data is not a real college-wide ranking.
+                </p>
+            </section>
+        </main>
+    </div>
+    <div id="modal" class="backdrop hidden">
+        <form id="achievement-form" class="modal">
+            <div class="modal-head">
+                <div><small class="eyebrow">STUDENT SUBMISSION</small>
+                    <h2>Add achievement</h2>
+                </div><button type="button" id="close-modal" class="close">×</button>
+            </div>
+            <label>Student<select id="student-id" required></select></label>
+            <div class="form-row"><label>Achievement title<input id="title" required maxlength="180"
+                        placeholder="e.g. SIH College Finalist"></label><label>Category<select id="category">
+                        <option>Hackathon</option>
+                        <option>Coding</option>
+                        <option>Project</option>
+                        <option>Internship</option>
+                        <option>Certification</option>
+                        <option>Academic</option>
+                        <option>Sports</option>
+                        <option>Leadership</option>
+                        <option>Other</option>
+                    </select></label></div>
+            <label>Achievement level<select id="level">
+                    <option>College</option>
+                    <option>Online</option>
+                    <option>State</option>
+                    <option>National</option>
+                    <option>International</option>
+                </select></label><label>Description<textarea id="description" rows="3"
+                    placeholder="Briefly describe the achievement"></textarea></label><label>Proof link (optional)<input
+                    id="proof" type="url" placeholder="https://..."></label>
+            <p class="note">New submissions start as Pending and earn no points until verified.</p>
+            <div class="modal-actions"><button type="button" class="secondary" id="cancel-modal">Cancel</button><button
+                    class="primary" type="submit">Submit for review</button></div>
+        </form>
+    </div>
+    <div id="toast" class="toast hidden"></div>
+
+    </div>
+    <script src="/app.js"></script>
+</body>
+
+</html>
